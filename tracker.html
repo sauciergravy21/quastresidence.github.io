@@ -30,6 +30,18 @@
             height: 350px;
             width: 100%;
         }
+        .hard-truth {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            color: #92400e;
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.7;
+            border-radius: 4px;
+        }
+        .hard-truth strong { color: #b45309; }
         .warning {
             margin-top: 20px;
             padding: 15px;
@@ -85,6 +97,26 @@
         <h1>HOA Reserve Fund Analysis</h1>
         <p class="subtitle">Data sourced directly from the HOA's official Reserve Study</p>
 
+        <!-- THE HARD TRUTH BOX (NEW) -->
+        <div class="hard-truth">
+            <strong>💰 THE HARD TRUTH: The Board is Contributing Only 16% of What's Required</strong>
+            <br><br>
+            According to the Reserve Study, the <strong>Fully Funded Balance</strong> is <strong>$2,939,081.23</strong>.
+            <br><br>
+            <strong>The Math:</strong>
+            <ul style="margin-left: 20px;">
+                <li><strong>Current Balance:</strong> ~$1,670,000 (56.7% funded)</li>
+                <li><strong>Shortfall:</strong> <strong>$1,269,081</strong></li>
+                <li><strong>Time to Fix:</strong> 10 Years</li>
+                <li><strong>Required Catch-Up:</strong> ~$130,000/year</li>
+                <li><strong>Plus Future Repairs:</strong> ~$211,000/year (by 2030)</li>
+                <li><strong>Total Required:</strong> <strong>~$341,000/year</strong></li>
+                <li><strong>Current Contribution:</strong> <strong>$55,022/year</strong></li>
+            </ul>
+            <br>
+            <strong>Conclusion:</strong> The Board is contributing <strong>16%</strong> of what is actually required to fix the problem. The "Recommended" path in the study is not a solution—it's a delay tactic that guarantees a future financial crisis.
+        </div>
+
         <!-- CHART 1: CONTRIBUTION GAP -->
         <div class="chart-section">
             <h2>📊 Annual Reserve Contributions: Current vs. Recommended</h2>
@@ -103,7 +135,7 @@
                 <canvas id="percentChart"></canvas>
             </div>
             <div class="info">
-                <strong>🚨 The Critical Flaw:</strong> Even if the HOA follows the study's "recommended" contributions (Green Line), the fund still collapses to <strong>9.3%</strong> by 2035. The Board's plan is a delay tactic, not a solution.
+                <strong>🚨 The Critical Flaw:</strong> Even if the HOA follows the study's "recommended" contributions (Red Line), the fund still collapses to <strong>9.3%</strong> by 2035. The Board's plan is a delay tactic, not a solution.
                 <br><br>
                 <strong>💡 The True Goal:</strong> To reach a healthy <strong>70% funded</strong> status (Blue Line), the HOA must contribute significantly more than the study suggests. The current "recommendation" guarantees a future financial crisis.
             </div>
@@ -239,69 +271,3 @@
                         order: 3 // Draw on top
                     },
                     {
-                        label: 'Critical Threshold (40%)',
-                        data: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40],
-                        borderColor: '#f59e0b',
-                        borderWidth: 2,
-                        borderDash: [2, 2],
-                        fill: false,
-                        pointRadius: 0,
-                        order: 3
-                    },
-                    {
-                        label: 'Required Path to Reach 70% (True Goal)',
-                        data: trueGoalPath,
-                        borderColor: '#3b82f6', // Blue
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        borderWidth: 4,
-                        tension: 0.3,
-                        fill: true,
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                        order: 1 // Draw on top of red line
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom' },
-                    title: {
-                        display: true,
-                        text: 'Reserve Fund Health: The "Recommended" Path vs. The "True Goal"',
-                        font: { size: 15, weight: 'bold' }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.parsed.y + '%';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        min: 0,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: 'Percent Funded (%)',
-                            font: { weight: 'bold' }
-                        },
-                        ticks: {
-                            callback: function(value) { return value + '%'; }
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Year'
-                        }
-                    }
-                }
-            }
-        });
-    </script>
-</body>
-</html>
