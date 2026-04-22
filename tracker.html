@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOA Reserve Fund Analysis | Quast Residence</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { color: #302b63; margin-bottom: 5px; text-align: center; }
+        .subtitle { color: #666; margin-bottom: 30px; text-align: center; font-size: 14px; }
+        .chart-section { margin-bottom: 40px; }
+        .chart-section h2 { color: #302b63; font-size: 18px; margin-bottom: 15px; }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+        .warning {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            color: #991b1b;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .info {
+            margin-top: 15px;
+            padding: 15px;
+            background: #dbeafe;
+            border-left: 5px solid #3b82f6;
+            color: #1e40af;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .source {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+            text-align: center;
+        }
+        .btn-row {
+            text-align: center;
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #6366f1;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn:hover { background: #4f46e5; }
+        .btn.secondary { background: #64748b; }
+        .btn.secondary:hover { background: #475569; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HOA Reserve Fund Analysis</h1>
+        <p class="subtitle">Data sourced directly from the HOA's official Reserve Study</p>
+
+        <!-- CHART 1: CONTRIBUTION GAP -->
+        <div class="chart-section">
+            <h2>📊 Annual Reserve Contributions: Current vs. Recommended</h2>
+            <div class="chart-container">
+                <canvas id="contributionChart"></canvas>
+            </div>
+            <div class="warning">
+                <strong>⚠️ The Gap:</strong> The HOA currently contributes <strong>$55,022/year</strong> to reserves. The Reserve Study recommends <strong>$86,200</strong> in 2026 alone — a shortfall of <strong>$31,178</strong>. By 2030, the recommended contribution more than triples to <strong>$211,000</strong>, while the current contribution remains flat. The board is not funding reserves at the level their own experts recommend.
+            </div>
+        </div>
+
+        <!-- CHART 2: PERCENT FUNDED DECLINE -->
+        <div class="chart-section">
+            <h2>📉 Reserve Fund Health: Percent Funded Over Time</h2>
+            <div class="chart-container">
+                <canvas id="percentChart"></canvas>
+            </div>
+            <div class="info">
+                <strong>📋 Context:</strong> Even if the HOA follows the study's recommended contributions (the increasing amounts shown above), the fund still drops from <strong>56.7%</strong> funded to <strong>9.3%</strong> funded by 2035. Industry standard for a healthy reserve is <strong>70%+</strong>. Below <strong>40%</strong> is considered critically underfunded. This means the suggested contributions are the <em>minimum</em> — and the current contributions fall far below even that.
+            </div>
+        </div>
+
+        <div class="source">
+            Data Source: HOA Reserve Study (2024). Current contribution data as of June 2025.
+        </div>
+
+        <div class="btn-row">
+            <a href="https://quastresidence.com" class="btn">← Back to Home</a>
+            <a href="https://drive.proton.me/urls/W8NH5CRCFC#3uERh78REOAF" class="btn secondary">📄 View Full Reserve Study</a>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CHART 1: CONTRIBUTION GAP
+        // ============================================
+        const ctx1 = document.getElementById('contributionChart').getContext('2d');
+
+        const contribYears = ['2026', '2027', '2028', '2029', '2030'];
+
+        // What the board currently contributes (flat $55,022/year)
+        const currentContribution = [55022, 55022, 55022, 55022, 55022];
+
+        // What the Reserve Study RECOMMENDS contributing
+        const recommendedContribution = [86200, 117400, 148600, 179800, 211000];
+
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: contribYears,
+                datasets: [
+                    {
+                        label: 'Current Annual Contribution ($55,022)',
+                        data: currentContribution,
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                        borderColor: '#ef4444',
+                        borderWidth: 2,
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Recommended Contribution (Reserve Study)',
+                        data: recommendedContribution,
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                        borderColor: '#10b981',
+                        borderWidth: 2,
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: {
+                        display: true,
+                        text: 'Annual Reserve Contributions: Current vs. Recommended',
+                        font: { size: 15, weight: 'bold' }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Annual Contribution ($)',
+                            font: { weight: 'bold' }
+                        },
+                        ticks: {
+                            callback: function(value) { return '$' + (value / 1000) + 'k'; }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Year'
+                        }
+                    }
+                }
+            }
+        });
+
+        // ============================================
+        // CHART 2: PERCENT FUNDED DECLINE
+        // ============================================
+        const ctx2 = document.getElementById('percentChart').getContext('2d');
+
+        const fundYears = ['2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035'];
+
+        // Percent Funded from the Reserve Study
+        const percentFunded = [56.7, 36.2, 26.6, 21.0, 17.4, 14.8, 12.9, 11.4, 10.2, 9.3];
+
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: fundYears,
+                datasets: [
+                    {
+                        label: 'Projected Percent Funded',
+                        data: percentFunded,
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 4,
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    },
+                    {
+                        label: 'Healthy Target (70%)',
+                        data: [70, 70, 70, 70, 70, 70, 70, 70, 70, 70],
+                        borderColor: '#10b981',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: false,
+                        pointRadius: 0
+                    },
+                    {
+                        label: 'Critical Threshold (40%)',
+                        data: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40],
+                        borderColor: '#f59e0b',
+                        borderWidth: 2,
+                        borderDash: [2, 2],
+                        fill: false,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: {
+                        display: true,
+                        text: 'Reserve Fund Health: Percent Funded Over Time',
+                        font: { size: 15, weight: 'bold' }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Percent Funded (%)',
+                            font: { weight: 'bold' }
+                        },
+                        ticks: {
+                            callback: function(value) { return value + '%'; }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Year'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
