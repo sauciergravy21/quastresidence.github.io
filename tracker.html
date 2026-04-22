@@ -95,26 +95,27 @@
 <body>
     <div class="container">
         <h1>HOA Reserve Fund Analysis</h1>
-        <p class="subtitle">Data sourced directly from the HOA's official Reserve Study</p>
+        <p class="subtitle">Data sourced directly from the HOA's official 2025 Reserve Study</p>
 
-        <!-- THE HARD TRUTH BOX (NEW) -->
+        <!-- THE HARD TRUTH BOX (UPDATED WITH EXACT NUMBERS) -->
         <div class="hard-truth">
-            <strong>💰 THE HARD TRUTH: The Board is Contributing Only 16% of What's Required</strong>
+            <strong>💰 THE HARD TRUTH: The Board is Contributing Only 11% of What's Required</strong>
             <br><br>
             According to the Reserve Study, the <strong>Fully Funded Balance</strong> is <strong>$2,939,081.23</strong>.
             <br><br>
-            <strong>The Math:</strong>
+            <strong>The Current Reality:</strong>
             <ul style="margin-left: 20px;">
-                <li><strong>Current Balance:</strong> ~$1,670,000 (56.7% funded)</li>
-                <li><strong>Shortfall:</strong> <strong>$1,269,081</strong></li>
-                <li><strong>Time to Fix:</strong> 10 Years</li>
-                <li><strong>Required Catch-Up:</strong> ~$130,000/year</li>
-                <li><strong>Plus Future Repairs:</strong> ~$211,000/year (by 2030)</li>
-                <li><strong>Total Required:</strong> <strong>~$341,000/year</strong></li>
-                <li><strong>Current Contribution:</strong> <strong>$55,022/year</strong></li>
+                <li><strong>Current Balance:</strong> $148,673 (<strong>5.06%</strong> funded)</li>
+                <li><strong>Shortfall:</strong> <strong>$2.79 Million</strong></li>
+                <li><strong>Current Contribution:</strong> $55,022/year</li>
             </ul>
             <br>
-            <strong>Conclusion:</strong> The Board is contributing <strong>16%</strong> of what is actually required to fix the problem. The "Recommended" path in the study is not a solution—it's a delay tactic that guarantees a future financial crisis.
+            <strong>The "Recommended" Plan Failure:</strong>
+            The study recommends increasing contributions to $86,200 in 2026, rising to $367,000 by 2035.
+            <br><br>
+            <strong>THE CRITICAL YEAR (2037):</strong> Even if the HOA follows this "recommended" plan, the fund will crash to <strong>3.7% funded</strong> in 2037, triggering a massive special assessment or bankruptcy.
+            <br><br>
+            <strong>The Solution:</strong> To avoid the 2037 crash and reach a healthy <strong>70% funded</strong> status, the HOA must contribute <strong>~$500,000/year</strong>. The board is currently contributing <strong>11%</strong> of what is required.
         </div>
 
         <!-- CHART 1: CONTRIBUTION GAP -->
@@ -124,25 +125,25 @@
                 <canvas id="contributionChart"></canvas>
             </div>
             <div class="warning">
-                <strong>⚠️ The Gap:</strong> The HOA currently contributes <strong>$55,022/year</strong> to reserves. The Reserve Study recommends <strong>$86,200</strong> in 2026 alone — a shortfall of <strong>$31,178</strong>. By 2030, the recommended contribution more than triples to <strong>$211,000</strong>, while the current contribution remains flat. The board is not funding reserves at the level their own experts recommend.
+                <strong>⚠️ The Gap:</strong> The HOA currently contributes <strong>$55,022/year</strong>. The Reserve Study recommends <strong>$86,200</strong> in 2026, rising to <strong>$367,000</strong> by 2035. The board is not funding reserves at the level their own experts recommend.
             </div>
         </div>
 
-        <!-- CHART 2: PERCENT FUNDED DECLINE (UPDATED WITH TRUE GOAL) -->
+        <!-- CHART 2: PERCENT FUNDED DECLINE (UPDATED WITH CRITICAL YEAR) -->
         <div class="chart-section">
             <h2>📉 Reserve Fund Health: The "Recommended" Path vs. The "True Goal"</h2>
             <div class="chart-container">
                 <canvas id="percentChart"></canvas>
             </div>
             <div class="info">
-                <strong>🚨 The Critical Flaw:</strong> Even if the HOA follows the study's "recommended" contributions (Red Line), the fund still collapses to <strong>9.3%</strong> by 2035. The Board's plan is a delay tactic, not a solution.
+                <strong>🚨 The Critical Flaw:</strong> Even if the HOA follows the study's "recommended" contributions (Red Line), the fund crashes to <strong>3.7%</strong> in the <strong>Critical Year of 2037</strong>. The Board's plan is a delay tactic, not a solution.
                 <br><br>
-                <strong>💡 The True Goal:</strong> To reach a healthy <strong>70% funded</strong> status (Blue Line), the HOA must contribute significantly more than the study suggests. The current "recommendation" guarantees a future financial crisis.
+                <strong>💡 The True Goal:</strong> To reach a healthy <strong>70% funded</strong> status (Blue Line) and avoid a financial collapse, the HOA must contribute significantly more than the study suggests.
             </div>
         </div>
 
         <div class="source">
-            Data Source: HOA Reserve Study (2024). Current contribution data as of June 2025.
+            Data Source: HOA Reserve Study (2025) by Building Reserves Inc. (Ref: 240731). Current balance as of June 30, 2025.
         </div>
 
         <div class="btn-row">
@@ -157,13 +158,13 @@
         // ============================================
         const ctx1 = document.getElementById('contributionChart').getContext('2d');
 
-        const contribYears = ['2026', '2027', '2028', '2029', '2030'];
+        const contribYears = ['2026', '2027', '2028', '2029', '2030', '2035'];
 
         // What the board currently contributes (flat $55,022/year)
-        const currentContribution = [55022, 55022, 55022, 55022, 55022];
+        const currentContribution = [55022, 55022, 55022, 55022, 55022, 55022];
 
-        // What the Reserve Study RECOMMENDS contributing
-        const recommendedContribution = [86200, 117400, 148600, 179800, 211000];
+        // What the Reserve Study RECOMMENDS contributing (from Page 1-2)
+        const recommendedContribution = [86200, 117400, 148600, 179800, 211000, 367000];
 
         new Chart(ctx1, {
             type: 'bar',
@@ -233,15 +234,17 @@
         // ============================================
         const ctx2 = document.getElementById('percentChart').getContext('2d');
 
-        const fundYears = ['2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035'];
+        // Years from 2025 to 2037 (Critical Year)
+        const fundYears = ['2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037'];
 
-        // Percent Funded from the Reserve Study (The "Recommended" path that fails)
-        const percentFunded = [56.7, 36.2, 26.6, 21.0, 17.4, 14.8, 12.9, 11.4, 10.2, 9.3];
+        // Percent Funded under the "Recommended" Plan (Based on study's cash flow projection)
+        // Starts at 5.06% (Current), rises slightly then crashes to 3.7% in 2037
+        // Approximated based on the study's "Critical Year" data
+        const percentFunded = [5.06, 7.1, 6.5, 5.8, 5.2, 4.8, 4.5, 4.2, 4.0, 3.9, 3.8, 3.7, 3.7];
 
-        // ESTIMATED "TRUE GOAL" PATH (To hit 70% by 2035)
-        // This is a projection showing what the curve SHOULD look like to be healthy.
-        // Starting at 56.7% and rising to 70% over 10 years.
-        const trueGoalPath = [56.7, 59.0, 61.5, 64.0, 66.0, 67.5, 68.5, 69.2, 69.8, 70.0];
+        // ESTIMATED "TRUE GOAL" PATH (To hit 70% by 2037)
+        // Starting at 5.06% and rising to 70% over 12 years
+        const trueGoalPath = [5.06, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 62.0, 70.0];
 
         new Chart(ctx2, {
             type: 'line',
@@ -258,16 +261,82 @@
                         fill: true,
                         pointRadius: 5,
                         pointHoverRadius: 7,
-                        order: 2 // Draw below the blue line
+                        order: 2
                     },
                     {
                         label: 'Healthy Target (70%)',
-                        data: [70, 70, 70, 70, 70, 70, 70, 70, 70, 70],
+                        data: [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70],
                         borderColor: '#10b981',
                         borderWidth: 2,
                         borderDash: [5, 5],
                         fill: false,
                         pointRadius: 0,
-                        order: 3 // Draw on top
+                        order: 3
                     },
                     {
+                        label: 'Critical Threshold (40%)',
+                        data: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40],
+                        borderColor: '#f59e0b',
+                        borderWidth: 2,
+                        borderDash: [2, 2],
+                        fill: false,
+                        pointRadius: 0,
+                        order: 3
+                    },
+                    {
+                        label: 'Required Path to Reach 70% (True Goal)',
+                        data: trueGoalPath,
+                        borderColor: '#3b82f6', // Blue
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 4,
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        order: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: {
+                        display: true,
+                        text: 'Reserve Fund Health: The "Recommended" Path vs. The "True Goal"',
+                        font: { size: 15, weight: 'bold' }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Percent Funded (%)',
+                            font: { weight: 'bold' }
+                        },
+                        ticks: {
+                            callback: function(value) { return value + '%'; }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Year'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
