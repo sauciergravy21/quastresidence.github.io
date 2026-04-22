@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOA Reserve Fund Analysis | Quast Residence</title>
+    <title>Greenbrier Reserve Fund: The Path to Stability</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,151 +12,213 @@
             background: #f4f4f9;
             color: #333;
             padding: 20px;
+            line-height: 1.6;
         }
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
-        h1 { color: #302b63; margin-bottom: 5px; text-align: center; }
         
-        /* Formal Subtitle Style */
+        /* Header Styling */
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { color: #302b63; font-size: 28px; margin-bottom: 10px; font-weight: 700; }
         .subtitle { 
-            color: #555; 
-            margin-bottom: 30px; 
-            text-align: center; 
-            font-size: 14px; 
+            color: #666; 
+            font-size: 16px; 
             font-style: italic; 
             border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
+
+        /* The Strategic "Reality Check" Box */
+        .reality-check {
+            background: #fff8e1;
+            border-left: 6px solid #f59e0b;
+            padding: 25px;
+            margin-bottom: 40px;
+            border-radius: 6px;
+        }
+        .reality-check h2 { color: #b45309; font-size: 20px; margin-bottom: 15px; }
+        .reality-check p { margin-bottom: 15px; font-size: 16px; }
+        .highlight-red { color: #dc2626; font-weight: bold; }
+        .highlight-blue { color: #2563eb; font-weight: bold; }
         
-        .chart-section { margin-bottom: 40px; }
-        .chart-section h2 { color: #302b63; font-size: 18px; margin-bottom: 15px; }
+        /* Charts */
+        .chart-section { margin-bottom: 50px; }
+        .chart-section h2 { color: #302b63; font-size: 22px; margin-bottom: 20px; text-align: center; }
         .chart-container {
             position: relative;
             height: 350px;
             width: 100%;
+            margin-bottom: 20px;
         }
-        .hard-truth {
-            margin-top: 20px;
+
+        /* Insight Boxes */
+        .insight-box {
             padding: 20px;
-            background: #fef3c7;
-            border-left: 5px solid #f59e0b;
-            color: #92400e;
-            text-align: left;
+            border-radius: 6px;
+            margin-top: 15px;
             font-size: 15px;
-            line-height: 1.7;
-            border-radius: 4px;
         }
-        .hard-truth strong { color: #b45309; }
         .warning {
-            margin-top: 20px;
-            padding: 15px;
             background: #fee2e2;
             border-left: 5px solid #ef4444;
             color: #991b1b;
-            text-align: left;
-            font-size: 14px;
-            line-height: 1.6;
         }
-        .info {
-            margin-top: 15px;
-            padding: 15px;
+        .solution {
             background: #dbeafe;
             border-left: 5px solid #3b82f6;
             color: #1e40af;
-            text-align: left;
-            font-size: 14px;
-            line-height: 1.6;
         }
+
+        /* Action Plan Section */
+        .action-plan {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .action-plan h3 { color: #302b63; margin-bottom: 20px; text-align: center; }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .step-number {
+            background: #302b63;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .step-content h4 { margin-bottom: 5px; color: #1e293b; }
+        .step-content p { color: #475569; font-size: 15px; }
+
         .source {
-            margin-top: 15px;
-            font-size: 12px;
+            margin-top: 30px;
+            font-size: 13px;
             color: #888;
             font-style: italic;
             text-align: center;
             border-top: 1px solid #eee;
-            padding-top: 15px;
+            padding-top: 20px;
         }
+        
         .btn-row {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 30px;
             display: flex;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
         .btn {
             display: inline-block;
-            padding: 10px 20px;
-            background: #6366f1;
+            padding: 12px 24px;
+            background: #302b63;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s;
         }
-        .btn:hover { background: #4f46e5; }
+        .btn:hover { background: #1e1b4b; }
         .btn.secondary { background: #64748b; }
         .btn.secondary:hover { background: #475569; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Greenbrier Condo Association Six Reserve Fund Analysis</h1>
-        
-        <!-- FINAL FORMAL CITATION -->
-        <p class="subtitle">Analysis based on the August 2025 Reserve Study conducted by Building Reserves Inc. (Reference ID: 240731)</p>
+        <header>
+            <h1>Greenbrier Reserve Fund: The Path to Stability</h1>
+            <p class="subtitle">Analysis based on the August 2025 Reserve Study (Ref: 240731) by Building Reserves Inc.</p>
+        </header>
 
-        <!-- THE HARD TRUTH BOX -->
-        <div class="hard-truth">
-            <strong>💰 THE HARD TRUTH: The Board is Funding Reserves at Only 64% of the Recommended Minimum</strong>
-            <br><br>
-            According to the Reserve Study, the <strong>Fully Funded Balance</strong> is <strong>$2,939,081.23</strong>.
-            <br><br>
-            <strong>The Current Reality:</strong>
-            <ul style="margin-left: 20px;">
-                <li><strong>Current Balance:</strong> $148,673 (<strong>5.06%</strong> funded)</li>
-                <li><strong>Shortfall:</strong> <strong>$2.79 Million</strong></li>
-                <li><strong>Current Contribution:</strong> $55,022/year</li>
+        <!-- THE REALITY CHECK -->
+        <div class="reality-check">
+            <h2>💡 The Core Issue: We Are Funding Below Expert Recommendations</h2>
+            <p>According to the official Reserve Study, the association is currently funding reserves at only <strong>64% of the recommended minimum</strong>. While the Board has been prudent, the math shows a dangerous gap between our current contributions and the cost of future repairs.</p>
+            
+            <p><strong>The Current Reality:</strong></p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li><strong>Current Balance:</strong> $148,673 (Only <strong>5.06%</strong> of what is needed to be "fully funded").</li>
+                <li><strong>Current Contribution:</strong> $55,022/year (~$57/unit/month).</li>
+                <li><strong>The Gap:</strong> We are short by nearly <strong>$2.8 Million</strong> in projected reserves.</li>
             </ul>
-            <br>
-            <strong>The "Recommended" Plan Failure:</strong>
-            The study recommends increasing contributions to $86,200 in 2026, rising to $367,000 by 2035.
-            <br><br>
-            <strong>THE CRITICAL YEAR (2037):</strong> Even if the HOA follows this "recommended" plan, the fund will crash to <strong>3.7% funded</strong> in 2037, triggering a <strong>massive special assessment crisis</strong> or <strong>financial insolvency</strong>.
-            <br><br>
-            <strong>The Solution:</strong> To avoid the 2037 crash and reach a healthy <strong>70% funded</strong> status (Industry Standard), the HOA must contribute <strong>~$500,000/year</strong>. The board is currently contributing <strong>11%</strong> of what is required for long-term health, and only <strong>64%</strong> of the study's minimum recommendation.
-            <br><br>
-            <em style="font-size: 12px;">*Analysis based on 2025 Reserve Study data provided by Building Reserves Inc.</em>
+
+            <p><strong>The Critical Warning:</strong> Even if we follow the study's "Recommended Plan" exactly, the fund will crash to <strong>3.7% funded</strong> in <strong>2037</strong>. This triggers a massive special assessment crisis or financial insolvency. We need a new strategy to avoid that cliff.</p>
         </div>
 
         <!-- CHART 1: CONTRIBUTION GAP -->
         <div class="chart-section">
-            <h2>📊 Annual Reserve Contributions: Current vs. Recommended</h2>
+            <h2>📊 The Funding Gap: Current vs. Recommended</h2>
             <div class="chart-container">
                 <canvas id="contributionChart"></canvas>
             </div>
-            <div class="warning">
-                <strong>⚠️ The Gap:</strong> The HOA currently contributes <strong>$55,022/year</strong>. The Reserve Study recommends <strong>$86,200</strong> in 2026, rising to <strong>$367,000</strong> by 2035. The board is not funding reserves at the level their own experts recommend.
+            <div class="insight-box warning">
+                <strong>⚠️ The Gap Widens Over Time:</strong> The study recommends starting at <strong>$86,200</strong> in 2026, rising to <strong>$367,000</strong> by 2035. Our current flat contribution of $55k leaves us falling further behind every year.
             </div>
         </div>
 
         <!-- CHART 2: PERCENT FUNDED DECLINE -->
         <div class="chart-section">
-            <h2>📉 Reserve Fund Health: The "Recommended" Path vs. The "True Goal"</h2>
+            <h2>📉 The 2037 Cliff: Why the "Recommended" Plan Isn't Enough</h2>
             <div class="chart-container">
                 <canvas id="percentChart"></canvas>
             </div>
-            <div class="info">
-                <strong>🚨 The Critical Flaw:</strong> Even if the HOA follows the study's "recommended" contributions (Red Line), the fund crashes to <strong>3.7%</strong> in the <strong>Critical Year of 2037</strong>. The Board's current funding path results in a <strong>delayed but inevitable funding crisis</strong> by 2037.
+            <div class="insight-box solution">
+                <strong>🚨 The Problem with the Status Quo:</strong> Following the study's minimum recommendation (Red Line) leads to a <strong>crash in 2037</strong>. 
                 <br><br>
-                <strong>💡 The True Goal:</strong> To reach a healthy <strong>70% funded</strong> status (Blue Line) and avoid a financial collapse, the HOA must contribute significantly more than the study suggests.
+                <strong>💡 The Stability Path (Blue Line):</strong> To reach a healthy <strong>70% funded</strong> status and avoid special assessments, we must accelerate contributions. This isn't about "perfect" funding; it's about avoiding a financial collapse.
             </div>
+        </div>
+
+        <!-- ACTION PLAN SECTION -->
+        <div class="action-plan">
+            <h3>🛣️ A Phased Approach to Stability</h3>
+            <p style="text-align: center; margin-bottom: 25px; color: #475569;">
+                Instead of a sudden shock, we propose a gradual ramp-up to reach the "Stability Target" over 10 years.
+            </p>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Immediate Adjustment (2026)</h4>
+                    <p>Increase contributions to <strong>$86,200/year</strong> ($89.79/unit/month). This aligns with the study's starting point and stops the bleeding immediately.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Gradual Ramp-Up (2027–2030)</h4>
+                    <p>Incrementally increase contributions by ~15-20% annually. This spreads the cost over time, making it manageable for owners while building the buffer.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Target Stabilization (2031+)</h4>
+                    <p>Aim for the <strong>$500,000/year</strong> target (~$520/unit/month) by 2035. This ensures we hit the 70% funded mark and eliminate the risk of a 2037 special assessment.</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 14px; color: #64748b; font-style: italic;">
+                *Note: The $500k figure represents the "Ideal Stability" scenario. The absolute minimum to avoid the 2037 crash is slightly lower, but requires accepting a lower funded percentage for longer.
+            </p>
         </div>
 
         <div class="source">
@@ -193,10 +255,10 @@
                         borderRadius: 4
                     },
                     {
-                        label: 'Recommended Contribution (Reserve Study)',
+                        label: 'Recommended Minimum (Reserve Study)',
                         data: recommendedContribution,
-                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
-                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(245, 158, 11, 0.7)', // Changed to orange for "warning/recommendation"
+                        borderColor: '#f59e0b',
                         borderWidth: 2,
                         borderRadius: 4
                     }
@@ -209,7 +271,7 @@
                     legend: { position: 'bottom' },
                     title: {
                         display: true,
-                        text: 'Annual Reserve Contributions: Current vs. Recommended',
+                        text: 'Annual Reserve Contributions: Current vs. Recommended Minimum',
                         font: { size: 15, weight: 'bold' }
                     },
                     tooltip: {
@@ -257,7 +319,7 @@
                 labels: fundYears,
                 datasets: [
                     {
-                        label: 'Projected Path (If Board Follows "Recommendations")',
+                        label: 'Projected Path (If we follow "Minimum Recommendations")',
                         data: percentFunded,
                         borderColor: '#ef4444',
                         backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -269,7 +331,7 @@
                         order: 2
                     },
                     {
-                        label: 'Healthy Target (70%)',
+                        label: 'Healthy Target (70% Funded)',
                         data: [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70],
                         borderColor: '#10b981',
                         borderWidth: 2,
@@ -289,7 +351,7 @@
                         order: 3
                     },
                     {
-                        label: 'Required Path to Reach 70% (True Goal)',
+                        label: 'Stability Path (Phased Increase to 70%)',
                         data: trueGoalPath,
                         borderColor: '#3b82f6',
                         backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -309,7 +371,7 @@
                     legend: { position: 'bottom' },
                     title: {
                         display: true,
-                        text: 'Reserve Fund Health: The "Recommended" Path vs. The "True Goal"',
+                        text: 'Reserve Fund Health: The "Minimum" Path vs. The "Stability" Path',
                         font: { size: 15, weight: 'bold' }
                     },
                     tooltip: {
