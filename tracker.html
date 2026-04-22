@@ -96,14 +96,16 @@
             </div>
         </div>
 
-        <!-- CHART 2: PERCENT FUNDED DECLINE -->
+        <!-- CHART 2: PERCENT FUNDED DECLINE (UPDATED WITH TRUE GOAL) -->
         <div class="chart-section">
-            <h2>📉 Reserve Fund Health: Percent Funded Over Time</h2>
+            <h2>📉 Reserve Fund Health: The "Recommended" Path vs. The "True Goal"</h2>
             <div class="chart-container">
                 <canvas id="percentChart"></canvas>
             </div>
             <div class="info">
-                <strong>📋 Context:</strong> Even if the HOA follows the study's recommended contributions (the increasing amounts shown above), the fund still drops from <strong>56.7%</strong> funded to <strong>9.3%</strong> funded by 2035. Industry standard for a healthy reserve is <strong>70%+</strong>. Below <strong>40%</strong> is considered critically underfunded. This means the suggested contributions are the <em>minimum</em> — and the current contributions fall far below even that.
+                <strong>🚨 The Critical Flaw:</strong> Even if the HOA follows the study's "recommended" contributions (Green Line), the fund still collapses to <strong>9.3%</strong> by 2035. The Board's plan is a delay tactic, not a solution.
+                <br><br>
+                <strong>💡 The True Goal:</strong> To reach a healthy <strong>70% funded</strong> status (Blue Line), the HOA must contribute significantly more than the study suggests. The current "recommendation" guarantees a future financial crisis.
             </div>
         </div>
 
@@ -195,14 +197,19 @@
         });
 
         // ============================================
-        // CHART 2: PERCENT FUNDED DECLINE
+        // CHART 2: PERCENT FUNDED DECLINE (UPDATED)
         // ============================================
         const ctx2 = document.getElementById('percentChart').getContext('2d');
 
         const fundYears = ['2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035'];
 
-        // Percent Funded from the Reserve Study
+        // Percent Funded from the Reserve Study (The "Recommended" path that fails)
         const percentFunded = [56.7, 36.2, 26.6, 21.0, 17.4, 14.8, 12.9, 11.4, 10.2, 9.3];
+
+        // ESTIMATED "TRUE GOAL" PATH (To hit 70% by 2035)
+        // This is a projection showing what the curve SHOULD look like to be healthy.
+        // Starting at 56.7% and rising to 70% over 10 years.
+        const trueGoalPath = [56.7, 59.0, 61.5, 64.0, 66.0, 67.5, 68.5, 69.2, 69.8, 70.0];
 
         new Chart(ctx2, {
             type: 'line',
@@ -210,7 +217,7 @@
                 labels: fundYears,
                 datasets: [
                     {
-                        label: 'Projected Percent Funded',
+                        label: 'Projected Path (If Board Follows "Recommendations")',
                         data: percentFunded,
                         borderColor: '#ef4444',
                         backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -218,7 +225,8 @@
                         tension: 0.3,
                         fill: true,
                         pointRadius: 5,
-                        pointHoverRadius: 7
+                        pointHoverRadius: 7,
+                        order: 2 // Draw below the blue line
                     },
                     {
                         label: 'Healthy Target (70%)',
@@ -227,7 +235,8 @@
                         borderWidth: 2,
                         borderDash: [5, 5],
                         fill: false,
-                        pointRadius: 0
+                        pointRadius: 0,
+                        order: 3 // Draw on top
                     },
                     {
                         label: 'Critical Threshold (40%)',
@@ -236,7 +245,20 @@
                         borderWidth: 2,
                         borderDash: [2, 2],
                         fill: false,
-                        pointRadius: 0
+                        pointRadius: 0,
+                        order: 3
+                    },
+                    {
+                        label: 'Required Path to Reach 70% (True Goal)',
+                        data: trueGoalPath,
+                        borderColor: '#3b82f6', // Blue
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 4,
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        order: 1 // Draw on top of red line
                     }
                 ]
             },
@@ -247,7 +269,7 @@
                     legend: { position: 'bottom' },
                     title: {
                         display: true,
-                        text: 'Reserve Fund Health: Percent Funded Over Time',
+                        text: 'Reserve Fund Health: The "Recommended" Path vs. The "True Goal"',
                         font: { size: 15, weight: 'bold' }
                     },
                     tooltip: {
