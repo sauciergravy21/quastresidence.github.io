@@ -540,6 +540,7 @@
     </div>
 
     <script>
+           <script>
         // ============================================
         // CHART 1: CONTRIBUTION GAP (Survival Focus)
         // ============================================
@@ -548,7 +549,6 @@
         const contribYears = ['2026', '2027', '2028', '2029', '2030', '2035'];
         const currentContribution = [55022, 55022, 55022, 55022, 55022, 55022];
         const recommendedContribution = [86200, 117400, 148600, 179800, 211000, 367000];
-        // Adjusted "Survival Target" to be slightly higher than the study's "Recommended" to ensure the 30-40% buffer
         const survivalTargetContribution = [86200, 130000, 180000, 240000, 300000, 380000];
 
         new Chart(ctx1, {
@@ -628,15 +628,8 @@
         const ctx2 = document.getElementById('percentChart').getContext('2d');
 
         const fundYears = ['2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037'];
-        
-        // Current Path: Drops to near zero
-        const currentPath = [5.06, 7.1, 6.5, 5.8, 5.2, 4.8, 4.5, 4.2, 4.0, 3.9, 3.8, 3.7, 0.0]; // 0% in 2037
-        
-        // Survival Path: Ramps up, dips in 2037 due to expenses, but lands at 30-40%
-        // Simulating a dip in 2037 but recovering to 35%
-        const survivalPath = [5.06, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 35.0]; // Lands at 35% after 2037 expense
-
-        // Safety Floor Line
+        const currentPath = [5.06, 7.1, 6.5, 5.8, 5.2, 4.8, 4.5, 4.2, 4.0, 3.9, 3.8, 3.7, 0.0];
+        const survivalPath = [5.06, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 35.0];
         const safetyFloor = [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30];
 
         new Chart(ctx2, {
@@ -725,34 +718,28 @@
         // SIMULATOR LOGIC
         // ============================================
         const slider = document.getElementById('contributionSlider');
-        const sliderDisplay = document.getElementById('sliderValueDisplay
-                                                        const slider = document.getElementById('contributionSlider');
         const sliderDisplay = document.getElementById('sliderValueDisplay');
         const newMonthlyCost = document.getElementById('newMonthlyCost');
         const monthlyIncrease = document.getElementById('monthlyIncrease');
         const projectedAssessment = document.getElementById('projectedAssessment');
 
-        // Initial values
         const baseMonthly = 57;
         const targetMonthly = 395;
-        const maxAssessment = 12400; // Estimated special assessment if no action taken
+        const maxAssessment = 12400;
 
         function updateSimulator() {
             const selectedAmount = parseInt(slider.value);
             const increase = selectedAmount - baseMonthly;
             const percentToTarget = (selectedAmount - baseMonthly) / (targetMonthly - baseMonthly);
             
-            // Calculate projected assessment (linear interpolation)
             const remainingAssessment = maxAssessment * (1 - percentToTarget);
             const finalAssessment = remainingAssessment > 0 ? remainingAssessment : 0;
 
-            // Update displays
             sliderDisplay.textContent = `$${selectedAmount}`;
             newMonthlyCost.textContent = `$${selectedAmount}`;
             monthlyIncrease.textContent = `$${increase}`;
             projectedAssessment.textContent = finalAssessment === 0 ? '$0' : `$${Math.round(finalAssessment).toLocaleString()}`;
             
-            // Color coding
             if (finalAssessment === 0) {
                 projectedAssessment.classList.remove('negative');
                 projectedAssessment.style.color = '#16a34a';
@@ -762,9 +749,6 @@
             }
         }
 
-        // Initialize and listen for changes
         slider.addEventListener('input', updateSimulator);
-        updateSimulator(); // Run once on load
+        updateSimulator();
     </script>
-</body>
-</html>
