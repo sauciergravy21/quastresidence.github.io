@@ -328,6 +328,27 @@
         .btn:hover { background: #1e1b4b; }
         .btn.secondary { background: #64748b; }
         .btn.secondary:hover { background: #475569; }
+                .btn.share { background: #0891b2; }
+        .btn.share:hover { background: #0e7490; }
+        .btn.pdf { background: #7c3aed; }
+        .btn.pdf:hover { background: #6d28d9; }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #302b63;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .toast.show { opacity: 1; }
     </style>
 </head>
 <body>
@@ -533,11 +554,14 @@
             Source: Building Reserves Inc., "August 2025 Reserve Study for Greenbrier Condominium Association Six", Ref: 240731. Data as of June 30, 2025.
         </div>
 
-        <div class="btn-row">
+                <div class="btn-row">
             <a href="https://quastresidence.com" class="btn">← Back to Home</a>
             <a href="https://drive.proton.me/urls/W8NH5CRCFC#3uERh78REOAF" class="btn secondary">📄 View Full Reserve Study</a>
+            <button onclick="shareAnalysis()" class="btn share">🔗 Share This Analysis</button>
+            <button onclick="downloadPDF()" class="btn pdf">📥 Download PDF Summary</button>
         </div>
-    </div>
+
+        <div id="toast" class="toast">Link copied to clipboard!</div>
            <script>
         // ============================================
         // CHART 1: CONTRIBUTION GAP (Survival Focus)
@@ -749,4 +773,40 @@
 
         slider.addEventListener('input', updateSimulator);
         updateSimulator();
+                       slider.addEventListener('input', updateSimulator);
+        updateSimulator();
+
+        // ============================================
+        // SHARE & DOWNLOAD FUNCTIONS
+        // ============================================
+        function shareAnalysis() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Greenbrier Reserve Fund: The 2037 Survival Plan',
+                    text: 'Check out this analysis of our reserve fund situation and what we can do about it.',
+                    url: url
+                }).catch(function() {});
+            } else {
+                navigator.clipboard.writeText(url).then(function() {
+                    showToast('Link copied to clipboard!');
+                }).catch(function() {
+                    showToast('Copy this link: ' + url);
+                });
+            }
+        }
+
+        function downloadPDF() {
+            window.print();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
     </script>
