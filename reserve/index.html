@@ -349,6 +349,96 @@
             z-index: 9999;
         }
         .toast.show { opacity: 1; }
+        /* --- MOBILE OPTIMIZATION OVERHAUL --- */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    .container {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    /* 1. HEADER & TYPOGRAPHY */
+    h1 { font-size: 22px !important; }
+    .subtitle { font-size: 14px !important; }
+    h2 { font-size: 20px !important; margin-bottom: 15px !important; }
+    h3 { font-size: 18px !important; }
+
+    /* 2. THE TABLE -> CARD STACK TRANSFORMATION */
+    /* Hide the table headers on mobile */
+    .status-tracker thead { display: none; }
+    
+    /* Make each row a card */
+    .status-tracker tbody tr {
+        display: block;
+        background: white;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+        padding: 15px;
+        position: relative;
+    }
+
+    /* Style the cells as data points */
+    .status-tracker tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 14px;
+    }
+    .status-tracker tbody td:last-child { border-bottom: none; }
+
+    /* Add labels before the data using CSS pseudo-elements */
+    .status-tracker tbody td::before {
+        content: attr(data-label); /* We will add data-label attributes in HTML later */
+        font-weight: 600;
+        color: #64748b;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Highlight the "Status" badge */
+    .status-tracker tbody td:last-child {
+        justify-content: flex-end;
+    }
+
+    /* 3. CHARTS */
+    .chart-container {
+        height: 250px !important; /* Smaller height for mobile */
+    }
+    .chart-section { margin-bottom: 30px; }
+
+    /* 4. SIMULATOR */
+    .simulator-section { padding: 20px; }
+    .simulator-header h2 { font-size: 22px; }
+    .simulator-controls { margin-bottom: 20px; }
+    .slider-container { max-width: 100%; }
+    
+    /* Stack results vertically */
+    .simulator-results { grid-template-columns: 1fr; gap: 15px; }
+    .result-card { padding: 15px; }
+    .result-value { font-size: 24px; }
+
+    /* 5. IMPACT GRID */
+    .impact-grid { grid-template-columns: 1fr; gap: 20px; }
+    .impact-card { padding: 15px; }
+    .impact-table th, .impact-table td { padding: 6px; font-size: 13px; }
+
+    /* 6. DOCUMENT REPO */
+    .document-repo { padding: 20px; }
+    /* Grid is already responsive, but let's tighten gaps */
+    .document-repo div[style*="grid-template-columns"] { gap: 15px; }
+    .document-repo h3 { font-size: 15px; }
+    .document-repo p { font-size: 12px; }
+
+    /* 7. BUTTONS */
+    .btn-row { flex-direction: column; gap: 10px; }
+    .btn { width: 100%; text-align: center; box-sizing: border-box; }
+}
     </style>
 </head>
 <body>
